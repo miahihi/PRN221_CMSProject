@@ -21,8 +21,9 @@ namespace Project.Pages.Enroll
         public int categoryID { get; set; }
         public void OnGet(int? pageIndex, string searchname = "", int category = 0)
         {
-            string loginID = "1";
-            //string loginID = HttpContext.Request.Cookies["loginId"];
+            if (category != categoryID) pageIndex = 1;
+
+            string loginID = HttpContext.Request.Cookies["loginId"];
 
             // load category
             courseCategories = context.CourseCategories.ToList();

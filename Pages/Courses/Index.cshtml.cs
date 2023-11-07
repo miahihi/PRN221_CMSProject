@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Project.Models;
 
-namespace Project.Pages.Course
+namespace Project.Pages.Courses
 {
     public class IndexModel : PageModel
     {
@@ -13,23 +13,27 @@ namespace Project.Pages.Course
             context = new prn231_finalprojectContext();
         }
         public List<CourseCategory> courseCategories { get; set; }
-        public List<Models.Course> results { get; set; }
+        public List<Course> results { get; set; }
         [BindProperty]
         public string searchValue { get; set; }
         [BindProperty]
         public int categoryID { get; set; }
+
         public void OnGet(int? pageIndex, string searchname = "", int category = 0)
         {
+            //
+            if (category != categoryID) pageIndex = 1;
+
             // load category
             courseCategories = context.CourseCategories.ToList();
 
             int pageSize = 2;
             int currentPage = pageIndex ?? 1;
-            IQueryable<Models.Course> courses;
+            IQueryable<Course> courses;
 
             if (context.Courses != null)
             {
-                if (String.IsNullOrEmpty(searchname))
+                if (string.IsNullOrEmpty(searchname))
                 {
                     courses = context.Courses;
                 }

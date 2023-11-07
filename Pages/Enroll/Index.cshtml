@@ -1,4 +1,4 @@
-﻿@page "/Enroll/Index"
+﻿@page
 @model Project.Pages.Enroll.IndexModel
 @{
 }
@@ -101,7 +101,8 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <h3>List All Course:</h3>
+                        <h4><a asp-page="/Courses/Index">Go to List All Course</a></h4>
+                        <h3>List Enroll Course:</h3>
                         <div class="row">
                             @foreach (var item in CourseResult)
                                 {
@@ -119,27 +120,13 @@
                         <div>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
-                                    @* <li class="btn btn-primary @HasPreviousPage">
-                                        <a asp-page="/Course/?pageIndex=@pageIndex"
-                                           asp-route-pageIndex="@(pageIndex -1)">Previous</a>
-                                        @* <a class="page-link" href="/Course?pageIndex=@(ViewBag.currentPage - 1)">Trước</a> 
-                                    </li> *@
 
                                     @for (int i = 1; i <= totalPages; i++)
                                     {
                                         <li class="page-item @(pageIndex == i ? "active" : "")">
-                                            <a class="page-link" href="/Course?pageIndex=@i&searchname=@Model.searchValue">@i</a>
+                                            <a class="page-link" href="/Enroll?pageIndex=@i&searchname=@Model.searchValue&category=@Model.categoryID">@i</a>
                                         </li>
                                     }
-
-                                   @*  <li class="page-item @(ViewBag.currentPage >= ViewBag.totalPages ? "disabled" : "")">
-                                        <a class="page-link" href="/Course?pageIndex=@(ViewBag.currentPage + 1)">Sau</a>
-                                    </li> *@
-                                    @* <li class="btn btn-primary @HasNextPage">
-                                        <a asp-page="/Course/?pageIndex=@pageIndex"
-                                           asp-route-pageIndex="@(pageIndex + 1)">Next</a>
-                                        @* <a class="page-link" href="/Course?pageIndex=@(ViewBag.currentPage - 1)">Trước</a>
-                                    </li> *@
                                 </ul>
                             </nav>
                         </div>
@@ -150,7 +137,7 @@
                                 @foreach (var item in @Model.courseCategories)
                                 {
                                     <ul>
-                                        <a asp-page="/Course/Index"
+                                        <a asp-page="/Enroll/Index"
                                            asp-route-pageIndex="@pageIndex"
                                            asp-route-searchname="@Model.searchValue"
                                            asp-route-category="@item.CategoryId">@item.CategoryName</a>
