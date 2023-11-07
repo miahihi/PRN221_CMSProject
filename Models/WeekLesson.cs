@@ -17,5 +17,10 @@ namespace Project.Models
 
         public virtual Course? Course { get; set; }
         public virtual ICollection<Assignment> Assignments { get; set; }
+
+        public string WeekTime()
+        {
+            return EndDate.ToString() + " - " + StartDate.ToString(); 
+        }
     }
 }

@@ -1,0 +1,109 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CMS - Course Management System</title>
+    <link rel="shortcut icon" href="./Index">
+    <meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://cmshn.fpt.edu.vn/">
+    <link rel="manifest" href="https://cmshn.fpt.edu.vn/admin/tool/mobile/mobile.webmanifest.php">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="moodle, CMS - Course Management System">
+    <link rel="stylesheet" type="text/css" href="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css">
+    <script charset="utf-8" id="yui_3_17_2_1_1696445272916_8" src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?m/1566968257/core/event/event-min.js&amp;m/1566968257/filter_mathjaxloader/loader/loader-min.js" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1696445272916_18" src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js" async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_2_1696445272916_2" src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?3.17.2/datatype-xml-parse/datatype-xml-parse-min.js&amp;3.17.2/io-xdr/io-xdr-min.js&amp;3.17.2/io-form/io-form-min.js&amp;3.17.2/io-upload-iframe/io-upload-iframe-min.js&amp;3.17.2/queue-promote/queue-promote-min.js&amp;3.17.2/io-queue/io-queue-min.js" async=""></script>
+    <script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
+    <link rel="stylesheet" type="text/css" href="https://cmshn.fpt.edu.vn/theme/styles.php/trema/1692173377_1/all">
+    <meta name="description" content="Course Management System">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="https://cmshn.fpt.edu.vn/lib/requirejs.php/1566968257/core/first.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            config: ["Accessible.js", "Safe.js"],
+            errorSettings: { message: ["!"] },
+            skipStartupTypeset: true,
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/jquery/jquery-3.2.1.min.js"></script>
+</head>
+
+<body id="page-site-index"
+      class="format-site course path-site chrome android dir-ltr lang-vi yui-skin-sam yui3-skin-sam cmshn-fpt-edu-vn pagelayout-frontpage course-1 context-2 notloggedin mobiletheme jsenabled drawer-ease">
+    <div>
+        <a class="sr-only sr-only-focusable" href="#maincontent">Chuyển tới nội dung chính</a>
+    </div>
+    <script type="text/javascript"
+            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script>
+    <script type="text/javascript"
+            src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/javascript-static.js"></script>
+    <script type="text/javascript">
+        document.body.className += ' jsenabled';
+    </script>
+    <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex"
+         id="yui_3_17_2_1_1696445272916_19">
+        <a href="https://cmshn.fpt.edu.vn" class="navbar-brand has-logo">
+            <span class="logo d-inline">
+                <img src="https://cmshn.fpt.edu.vn/pluginfile.php/1/core_admin/logocompact/0x70/1692173377/2020-FPTU-Eng.png"
+                     alt="eLearning">
+            </span>
+        </a>
+
+        @if (Model.userlogin != null)
+        {
+            <ul class="nav navbar-nav ml-auto" id="yui_3_17_2_1_1696445272916_25">
+               <span style="color: #eb346b">@Model.userlogin.Fullname</span>
+            </ul>
+            <img id="dropdown-toggle" style="margin-left: 10px" src="https://cdn.theatlantic.com/thumbor/yzr779tnJFIst6qTNe7iWiBKYa4=/845x470:2635x1477/976x549/media/img/mt/2016/03/RTX283V4/original.jpg" class="userpicture" width="35" height="35" role="presentation" aria-hidden="true">
+            <div class="dropdown">
+                 <i class="fas fa-chevron-down"></i>
+                <ul class="dropdown-menu">
+                    <li><a asp-page="/Profile/EditProfile">Profile</a></li>
+                    <li><a asp-page="/Logout">Logout</a></li>
+                </ul>
+            </div>
+        }
+        
+    </nav>
+    @RenderBody()
+</body>
+</html>
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle {
+        background-color: #f1f1f1;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: -60px;
+        background-color: #fff;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        padding: 8px 0;
+        list-style-type: none;
+        display: none;
+    }
+
+        .dropdown-menu li {
+            padding: 8px 10px;
+        }
+
+            .dropdown-menu li a {
+                text-decoration: none;
+                color: #333;
+            }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+</style>
