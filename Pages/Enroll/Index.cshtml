@@ -9,152 +9,74 @@
     var CourseResult = Model.results;
     var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
     var totalPages = Convert.ToInt32(ViewData["totalPages"]);
+
+    ViewData["Title"] = "My Enroll Course";
+    Layout = "/Pages/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-<html dir="ltr" lang="vi" xml:lang="vi" class="yui3-js-enabled">
-<head>
-    <title>CMS - Course Management System</title>
-    <link rel="shortcut icon" href="https://cmshn.fpt.edu.vn/theme/image.php/trema/theme/1692173377/favicon">
-    <meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://cmshn.fpt.edu.vn/">
-    <link rel="manifest" href="https://cmshn.fpt.edu.vn/admin/tool/mobile/mobile.webmanifest.php">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="keywords" content="moodle, CMS - Course Management System">
-    <link rel="stylesheet" type="text/css"
-          href="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css">
-    <script charset="utf-8" id="yui_3_17_2_1_1696445272916_8"
-            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?m/1566968257/core/event/event-min.js&amp;m/1566968257/filter_mathjaxloader/loader/loader-min.js"
-            async=""></script>
-    <script charset="utf-8" id="yui_3_17_2_1_1696445272916_18"
-            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js"
-            async=""></script>
-    <script charset="utf-8" id="yui_3_17_2_2_1696445272916_2"
-            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?3.17.2/datatype-xml-parse/datatype-xml-parse-min.js&amp;3.17.2/io-xdr/io-xdr-min.js&amp;3.17.2/io-form/io-form-min.js&amp;3.17.2/io-upload-iframe/io-upload-iframe-min.js&amp;3.17.2/queue-promote/queue-promote-min.js&amp;3.17.2/io-queue/io-queue-min.js"
-            async=""></script>
-    <script id="firstthemesheet"
-            type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
-    <link rel="stylesheet" type="text/css" href="https://cmshn.fpt.edu.vn/theme/styles.php/trema/1692173377_1/all">
-    <meta name="description" content="Course Management System">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first"
-            src="https://cmshn.fpt.edu.vn/lib/requirejs.php/1566968257/core/first.js"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            config: ["Accessible.js", "Safe.js"],
-            errorSettings: { message: ["!"] },
-            skipStartupTypeset: true,
-            messageStyle: "none"
-        });
-    </script>
-    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery"
-            src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/jquery/jquery-3.2.1.min.js"></script>
-</head>
-
-<body id="page-site-index"
-      class="format-site course path-site chrome android dir-ltr lang-vi yui-skin-sam yui3-skin-sam cmshn-fpt-edu-vn pagelayout-frontpage course-1 context-2 notloggedin mobiletheme jsenabled drawer-ease">
-
-    <div id="page-wrapper">
-        <div>
-            <a class="sr-only sr-only-focusable" href="#maincontent">Chuyển tới nội dung chính</a>
-        </div>
-        <script type="text/javascript"
-                src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script>
-        <script type="text/javascript"
-                src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/javascript-static.js"></script>
-        <script type="text/javascript">
-            document.body.className += ' jsenabled';
-        </script>
-        <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex"
-             id="yui_3_17_2_1_1696445272916_19">
-
-
-            <a href="https://cmshn.fpt.edu.vn" class="navbar-brand has-logo">
-                <span class="logo d-inline">
-                    <img src="https://cmshn.fpt.edu.vn/pluginfile.php/1/core_admin/logocompact/0x70/1692173377/2020-FPTU-Eng.png"
-                         alt="eLearning">
-                </span>
-            </a>
-
-            <ul class="navbar-nav d-none d-md-flex">
-            </ul>
-            <ul class="nav navbar-nav ml-auto" id="yui_3_17_2_1_1696445272916_25">
-                <li class="nav-item">
-
-                </li>
-            </ul>
-        </nav>
-
-        <div id="page" class="container-fluid">
-            <div class="card">
-                <div class="card-body">
-                    <span class="notifications" id="user-notifications"></span>
-                    <div role="main">
-                        <span id="maincontent"></span>
-                        <div class="box generalbox mdl-align py-3">
-                            @* <form id="coursesearch" method="get"> *@
-                            <form id="coursesearch" asp-page-handler="SearchCourse" method="post">
-                                <fieldset class="coursesearchbox invisiblefieldset">
-                                    <label for="coursesearchbox">Search courses: </label>
-                                    <input type="text" id="coursesearchbox" size="30" name="searchname" value="@Model.searchValue">
-                                    <input type="submit" value="SEARCH">
-                                </fieldset>
-                            </form>
-                        </div>
-                        <h4><a asp-page="/Courses/Index">Go to List All Course</a></h4>
-                        <h3>List Enroll Course:</h3>
-                        <div class="row">
-                            @foreach (var item in CourseResult)
-                                {
-                                    <div class="card-deck mb-4" style="margin-right: 20px">
-                                        <div style="background-color: rgb(244, 244, 236);" class="mb-3">
-                                            <img style="height: 100px; width: 280px;"
-                                                 src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
-                                            <div style="text-align: center;" class="card-body">
-                                                <p> <a asp-controller="Course" asp-action="GetCourseLesson" asp-route-id="@item.CourseId">@item.Name</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                        </div>
-                        <div>
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-
-                                    @for (int i = 1; i <= totalPages; i++)
-                                    {
-                                        <li class="page-item @(pageIndex == i ? "active" : "")">
-                                            <a class="page-link" href="/Enroll?pageIndex=@i&searchname=@Model.searchValue&category=@Model.categoryID">@i</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </nav>
-                        </div>
-
-                        <h3>Course categories:</h3>
-                        <div class="course-category row">
-                            <div class="col-4">
-                                @foreach (var item in @Model.courseCategories)
-                                {
-                                    <ul>
-                                        <a asp-page="/Enroll/Index"
-                                           asp-route-pageIndex="@pageIndex"
-                                           asp-route-searchname="@Model.searchValue"
-                                           asp-route-category="@item.CategoryId">@item.CategoryName</a>
-
-                                    </ul>
-                                }
-                            </div>
-                            
-                        </div>
-
-                    </div>
+<div id="page" class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main">
+                <span id="maincontent"></span>
+                <div class="box generalbox mdl-align py-3">
+                    @* <form id="coursesearch" method="get"> *@
+                    <form id="coursesearch" asp-page-handler="SearchCourse" method="post">
+                        <fieldset class="coursesearchbox invisiblefieldset">
+                            <label for="coursesearchbox">Search courses: </label>
+                            <input type="text" id="coursesearchbox" size="30" name="searchname" value="@Model.searchValue">
+                            <input type="submit" value="SEARCH">
+                        </fieldset>
+                    </form>
                 </div>
-            </div>
+                <h3>List Enroll Course:</h3>
+                <div class="row">
+                    @foreach (var item in CourseResult)
+                        {
+                            <div class="card-deck mb-4" style="margin-right: 20px">
+                                <div style="background-color: rgb(244, 244, 236);" class="mb-3">
+                                    <img style="height: 100px; width: 280px;"
+                                         src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
+                                    <div style="text-align: center;" class="card-body">
+                                    <p> <a asp-page="/Courses/Detail" asp-route-id="@item.CourseId">@item.Name</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                </div>
+                <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
 
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(pageIndex == i ? "active" : "")">
+                                    <a class="page-link" href="/Enroll?pageIndex=@i&searchname=@Model.searchValue&category=@Model.categoryID">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+
+                <h3>Course categories:</h3>
+                <div class="course-category row">
+                    <div class="col-4">
+                        @foreach (var item in @Model.courseCategories)
+                        {
+                            <ul>
+                                <a asp-page="/Enroll/Index"
+                                   asp-route-pageIndex="@pageIndex"
+                                   asp-route-searchname="@Model.searchValue"
+                                   asp-route-category="@item.CategoryId">@item.CategoryName</a>
+
+                            </ul>
+                        }
+                    </div>
+                    
+                </div>
+
+            </div>
         </div>
     </div>
-</body>
 
-</html>
-
+</div>

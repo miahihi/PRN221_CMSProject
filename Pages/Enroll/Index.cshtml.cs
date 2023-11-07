@@ -8,13 +8,14 @@ namespace Project.Pages.Enroll
     public class IndexModel : PageModel
     {
         private readonly prn231_finalprojectContext context;
+        public User userlogin { get; set; }
         public IndexModel()
         {
             context = new prn231_finalprojectContext();
         }
         public List<CourseCategory> courseCategories { get; set; }
         public List<Enrollment> enrollments { get; set; }
-        public List<Models.Course> results { get; set; }
+        public List<Course> results { get; set; }
         [BindProperty]
         public string searchValue { get; set; }
         [BindProperty]
@@ -24,6 +25,10 @@ namespace Project.Pages.Enroll
             if (category != categoryID) pageIndex = 1;
 
             string loginID = HttpContext.Request.Cookies["loginId"];
+            if (loginID != null)
+            {
+                userlogin = context.Users.FirstOrDefault(x => x.UserId == int.Parse(loginID));
+            }
 
             // load category
             courseCategories = context.CourseCategories.ToList();
@@ -31,24 +36,9 @@ namespace Project.Pages.Enroll
             int pageSize = 2;
             int currentPage = pageIndex ?? 1;
 
-            IQueryable<Models.Course> courses;
+            IQueryable<Course> courses;
 
-            int id = 0;
-            try
-            {
-                id = context.Users.FirstOrDefault(p => p.UserId == int.Parse(loginID)).UserId;
-            }
-            catch
-            {
-                id = 0;
-            }
-
-            if (id == 0)
-            {
-                return;
-            }
-
-            enrollments = context.Enrollments.Where(p => p.UserId == id).ToList();
+            enrollments = context.Enrollments.Where(p => p.UserId == userlogin.UserId).ToList();
 
             if (context.Courses != null && enrollments != null)
             {
@@ -57,7 +47,7 @@ namespace Project.Pages.Enroll
                     courses = from course in context.Courses
                               join enrollment in context.Enrollments
                               on course.CourseId equals enrollment.CourseId
-                              where enrollment.UserId == 1
+                              where enrollment.UserId == userlogin.UserId
                               select course;
                 }
                 else

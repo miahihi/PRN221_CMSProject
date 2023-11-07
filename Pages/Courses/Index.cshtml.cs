@@ -8,6 +8,7 @@ namespace Project.Pages.Courses
     public class IndexModel : PageModel
     {
         private readonly prn231_finalprojectContext context;
+        public User userlogin { get; set; }
         public IndexModel()
         {
             context = new prn231_finalprojectContext();
@@ -21,6 +22,11 @@ namespace Project.Pages.Courses
 
         public void OnGet(int? pageIndex, string searchname = "", int category = 0)
         {
+            string loginID = HttpContext.Request.Cookies["loginId"];
+            if (loginID != null)
+            {
+                userlogin = context.Users.FirstOrDefault(x => x.UserId == int.Parse(loginID));
+            }
             //
             if (category != categoryID) pageIndex = 1;
 
@@ -55,11 +61,6 @@ namespace Project.Pages.Courses
                 ViewData["pageIndex"] = currentPage;
                 ViewData["totalPages"] = Math.Ceiling((double)courses.ToList().Count / pageSize);
             }
-        }
-
-        public IActionResult OnPostSearchCourse(string searchname)
-        {
-            return RedirectToPage("SearchCourse", new { searchName = searchname });
         }
     }
 }
