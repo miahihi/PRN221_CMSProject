@@ -1,0 +1,121 @@
+﻿@page
+@model Project.Pages.LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xml:lang="en" class="yui3-js-enabled">
+<head>
+    <title>CMS - Course Management System: Log in to the site</title>
+    <link rel="shortcut icon" href="https://cmshn.fpt.edu.vn/theme/image.php/trema/theme/1684246329/favicon">
+    <meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://cmshn.fpt.edu.vn/login/index.php">
+    <link rel="manifest" href="https://cmshn.fpt.edu.vn/admin/tool/mobile/mobile.webmanifest.php">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="moodle, CMS - Course Management System: Log in to the site">
+    <link rel="stylesheet" type="text/css"
+          href="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css">
+    <script charset="utf-8" id="yui_3_17_2_1_1688183502974_8"
+            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?m/1566968257/core/event/event-min.js&amp;m/1566968257/filter_mathjaxloader/loader/loader-min.js"
+            async=""></script>
+    <script charset="utf-8" id="yui_3_17_2_1_1688183502974_18"
+            src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?3.17.2/event-mousewheel/event-mousewheel-min.js&amp;3.17.2/event-resize/event-resize-min.js&amp;3.17.2/event-hover/event-hover-min.js&amp;3.17.2/event-touch/event-touch-min.js&amp;3.17.2/event-move/event-move-min.js&amp;3.17.2/event-flick/event-flick-min.js&amp;3.17.2/event-valuechange/event-valuechange-min.js&amp;3.17.2/event-tap/event-tap-min.js"
+            async=""></script>
+    <script id="firstthemesheet"
+            type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
+    <link rel="stylesheet" type="text/css" href="https://cmshn.fpt.edu.vn/theme/styles.php/trema/1684246329_1/all">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first"
+            src="https://cmshn.fpt.edu.vn/lib/requirejs.php/1566968257/core/first.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        config: ["Accessible.js", "Safe.js"],
+        errorSettings: { message: ["!"] },
+        skipStartupTypeset: true,
+        messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery"
+            src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/jquery/jquery-3.2.1.min.js"></script>
+</head>
+
+<body id="page-login-index"
+      class="format-site  path-login chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam cmshn-fpt-edu-vn pagelayout-login course-1 context-1 notloggedin style-image jsenabled">
+    <div id="page-wrapper">
+        <div>
+            <a class="sr-only sr-only-focusable" href="#maincontent">Skip to main content</a>
+        </div>
+        <script type="text/javascript"
+                src="https://cmshn.fpt.edu.vn/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script>
+        <script type="text/javascript"
+                src="https://cmshn.fpt.edu.vn/lib/javascript.php/1566968257/lib/javascript-static.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+            document.body.className += ' jsenabled';
+                        //]]>
+        </script>
+        <div id="page" class="mt-0 pt-0 container-fluid">
+            <div id="page-content" class="row">
+                <div id="region-main-box" class="col-12">
+                    <section id="region-main" class="col-12">
+                        <span class="notifications" id="user-notifications"></span>
+                        <div role="main">
+                            <span id="maincontent"></span>
+                            <div class="row justify-content-center">
+                                <div class="col-xl-6 col-sm-8 ">
+                                    <div id="card-login" class="card">
+                                        <div class="card-block">
+                                            <div class="card-body">
+                                                <h2 class="card-header text-center">CMS - Course Management System</h2>
+                                                <div class="row justify-content-md-center">
+                                                    <div class="col-md-10">
+                                                        <form asp-page-handler="LoginUser" method="post">
+                                                            <div class="form-group" style="margin-left:14px">
+                                                                <label for="Email" class="sr-only">
+                                                                    Email
+                                                                </label>
+                                                                <input type="text" name="email" id="Email"
+                                                                       class="form-control" value=""
+                                                                       placeholder="Email">
+                                                            </div>
+                                                            <div class="form-group" style="margin-left:14px">
+                                                                <label for="password" class="sr-only">Password</label>
+                                                                <input type="password" name="password" id="password"
+                                                                       value="" class="form-control"
+                                                                       placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group text-center mb-2" style="margin-right:10px">
+                                                                <button type="submit" class="btn btn-primary btn-block"
+                                                                        id="loginbtn">
+                                                                    Log in
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="container-fluid">
+                                                        <div><h6 class="mt-2" style="text-align:center">Đăng nhập bằng tài khoản của bạn trên:</h6></div>
+                                                        <div class="potentialidplist">
+                                                            <div class="potentialidp">
+                                                                <a href="https://cmshn.fpt.edu.vn/auth/oauth2/login.php?id=5&amp;wantsurl=%2F&amp;sesskey=zeg1jte3yu" title="fpt.edu.vn" class="btn btn-secondary btn-block">
+                                                                    <img src="https://accounts.google.com/favicon.ico" alt="" width="24" height="24">
+                                                                    fpt.edu.vn
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div>
+
+</body>
+
+</html>
+

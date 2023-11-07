@@ -1,0 +1,124 @@
+﻿@page
+@model Project.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div style="margin-top: 50px;" class="col-12 pt-3 pb-3">
+    <div class="card ">
+        <div class="card-body ">
+            <div class="d-flex">
+                <div class="mr-auto">
+                    <div class="page-context-header">
+                        <div class="page-header-image">
+                            <img src="https://cdn.theatlantic.com/thumbor/yzr779tnJFIst6qTNe7iWiBKYa4=/845x470:2635x1477/976x549/media/img/mt/2016/03/RTX283V4/original.jpg"
+                                 class="userpicture" width="100" height="100" alt="Picture"></a>
+                        </div>
+                        <div class="page-header-headings">
+                            <h1 style="color: #eb346b;">(K16_HL) @Model.userlogin.Fullname</h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-page-handler="UpdateProfile" method="post">
+    <div style="margin-left: 10%;" class="fcontainer clearfix" id="yui_3_17_2_1_1699373143597_504">
+        <div id="fitem_id_lastname" class="form-group row  fitem   ">
+            <div class="col-md-3">
+                <span class="float-sm-right text-nowrap">
+                    <abbr class="initialism text-danger" title="Required">
+                        <i class="icon fa fa-exclamation-circle text-danger fa-fw " title="Required"
+                           aria-label="Required"></i>
+                    </abbr>
+                </span>
+                <label class="col-form-label d-inline " for="id_lastname">
+                    Email
+                </label>
+            </div>
+            <div class="col-md-9 form-inline felement" data-fieldtype="text" id="yui_3_17_2_1_1699373143597_565">
+                <input readonly type="text" class="form-control " name="lastname" id="id_lastname" value="@Model.userlogin.Email" size="100"
+                       maxlength="100" autocomplete="family-name">
+                <div class="form-control-feedback invalid-feedback" id="id_error_lastname">
+                </div>
+            </div>
+        </div>
+        <div id="fitem_id_firstname" class="form-group row  fitem   ">
+            <div class="col-md-3">
+                <span class="float-sm-right text-nowrap">
+                    <abbr class="initialism text-danger" title="Required">
+                        <i class="icon fa fa-exclamation-circle text-danger fa-fw " title="Required"
+                           aria-label="Required"></i>
+                    </abbr>
+                </span>
+                <label class="col-form-label d-inline " for="id_firstname">
+                    Roll Number
+                </label>
+            </div>
+            <div class="col-md-9 form-inline felement" data-fieldtype="text" id="yui_3_17_2_1_1699373143597_571">
+                <input readonly type="text" class="form-control " name="firstname" id="id_firstname" value="@Model.userlogin.Mssv"
+                       size="100" maxlength="100" autocomplete="given-name">
+                <div class="form-control-feedback invalid-feedback" id="id_error_firstname">
+                </div>
+            </div>
+        </div>
+        <div id="fitem_id_email" class="form-group row  fitem   ">
+            <div class="col-md-3">
+                <span class="float-sm-right text-nowrap">
+                    <abbr class="initialism text-danger" title="Required">
+                        <i class="icon fa fa-exclamation-circle text-danger fa-fw " title="Required"
+                           aria-label="Required"></i>
+                    </abbr>
+
+
+                </span>
+                <label class="col-form-label d-inline " for="id_email">
+                    Fullname
+                </label>
+            </div>
+            <div class="col-md-9 form-inline felement" data-fieldtype="text">
+                <input required type="text" class="form-control" name="fullname" id="id_email" value="@Model.userlogin.Fullname"
+                       size="100" maxlength="100" autocomplete="email">
+                <div class="form-control-feedback invalid-feedback" id="id_error_email">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="fgroup_id_buttonar" class="form-group row  fitem femptylabel" data-groupname="buttonar">
+        <div class="col-md-4">
+            <span class="float-sm-right text-nowrap">
+            </span>
+            <label class="col-form-label d-inline " for="fgroup_id_buttonar">
+            </label>
+        </div>
+        <div class="col-md-8 form-inline felement" data-fieldtype="group">
+            <div class="form-group  fitem" style="margin-right: 20px;">
+                <label class="col-form-label " for="id_submitbutton">
+                </label>
+                <span data-fieldtype="submit">
+                    <input type="submit" class="btn btn-primary"
+                           name="submitbutton" id="id_submitbutton" value="Update profile">
+                </span>
+                <div class="form-control-feedback invalid-feedback" id="id_error_submitbutton">
+                </div>
+            </div>
+
+            <div class="form-group  fitem   btn-cancel">
+                <label class="col-form-label " for="id_cancel">
+                </label>
+                <span data-fieldtype="submit">
+                    <a href="/Course">Back</a>
+                </span>
+                <div class="form-control-feedback invalid-feedback" id="id_error_cancel">
+                </div>
+            </div>
+            <div class="form-control-feedback invalid-feedback" id="id_error_buttonar">
+            </div>
+        </div>
+    </div>
+</form>
+
