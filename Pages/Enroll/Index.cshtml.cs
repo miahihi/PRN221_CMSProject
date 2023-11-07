@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Project.Models;
 
-namespace Project.Pages.Course
+namespace Project.Pages.Enroll
 {
     public class IndexModel : PageModel
     {
@@ -13,6 +13,7 @@ namespace Project.Pages.Course
             context = new prn231_finalprojectContext();
         }
         public List<CourseCategory> courseCategories { get; set; }
+        public List<Enrollment> enrollments { get; set; }
         public List<Models.Course> results { get; set; }
         [BindProperty]
         public string searchValue { get; set; }
@@ -20,22 +21,51 @@ namespace Project.Pages.Course
         public int categoryID { get; set; }
         public void OnGet(int? pageIndex, string searchname = "", int category = 0)
         {
+            string loginID = "1";
+            //string loginID = HttpContext.Request.Cookies["loginId"];
+
             // load category
             courseCategories = context.CourseCategories.ToList();
 
             int pageSize = 2;
             int currentPage = pageIndex ?? 1;
+
             IQueryable<Models.Course> courses;
 
-            if (context.Courses != null)
+            int id = 0;
+            try
+            {
+                id = context.Users.FirstOrDefault(p => p.UserId == int.Parse(loginID)).UserId;
+            }
+            catch
+            {
+                id = 0;
+            }
+
+            if (id == 0)
+            {
+                return;
+            }
+
+            enrollments = context.Enrollments.Where(p => p.UserId == id).ToList();
+
+            if (context.Courses != null && enrollments != null)
             {
                 if (String.IsNullOrEmpty(searchname))
                 {
-                    courses = context.Courses;
+                    courses = from course in context.Courses
+                              join enrollment in context.Enrollments
+                              on course.CourseId equals enrollment.CourseId
+                              where enrollment.UserId == 1
+                              select course;
                 }
                 else
                 {
-                    courses = context.Courses.Where(p => p.Name.ToLower().Contains(searchname.ToLower()));
+                    courses = from course in context.Courses
+                              join enroll in enrollments
+                              on course.CourseId equals enroll.CourseId
+                              where course.Name.ToLower().Contains(searchname.ToLower())
+                              select course;
                 }
 
                 if (category > 0)
