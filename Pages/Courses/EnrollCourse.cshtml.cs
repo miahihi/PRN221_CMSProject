@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Project.Models;
 
 namespace Project.Pages.Courses
@@ -7,7 +8,7 @@ namespace Project.Pages.Courses
     public class EnrollCourseModel : PageModel
     {
         public User userlogin { get; set; }
-        public Course c { get; set; }
+        public Models.Course c { get; set; }
         public void OnGet(int? courseId)
         {
             if (courseId!=0)

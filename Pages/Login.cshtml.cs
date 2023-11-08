@@ -18,7 +18,7 @@ namespace Project.Pages
                 if (loginuser != null)
                 {
                     Response.Cookies.Append("loginId", loginuser.UserId.ToString());
-                    return RedirectToPage("Course");
+                    return RedirectToPage("/Courses/Index");
                 }
                 ViewData["mess"] = "Login Fail!!!";
                 return Page();

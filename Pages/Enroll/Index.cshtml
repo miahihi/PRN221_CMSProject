@@ -1,0 +1,82 @@
+﻿@page
+@model Project.Pages.Enroll.IndexModel
+@{
+}
+@using Project.Paging;
+@using Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var CourseResult = Model.results;
+    var pageIndex = Convert.ToInt32(ViewData["pageIndex"]);
+    var totalPages = Convert.ToInt32(ViewData["totalPages"]);
+
+    ViewData["Title"] = "My Enroll Course";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div id="page" class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <span class="notifications" id="user-notifications"></span>
+            <div role="main">
+                <span id="maincontent"></span>
+                <div class="box generalbox mdl-align py-3">
+                    @* <form id="coursesearch" method="get"> *@
+                    <form id="coursesearch" asp-page-handler="SearchCourse" method="post">
+                        <fieldset class="coursesearchbox invisiblefieldset">
+                            <label for="coursesearchbox">Search courses: </label>
+                            <input type="text" id="coursesearchbox" size="30" name="searchname" value="@Model.searchValue">
+                            <input type="submit" value="SEARCH">
+                        </fieldset>
+                    </form>
+                </div>
+                <h3>List Enroll Course:</h3>
+                <div class="row">
+                    @foreach (var item in CourseResult)
+                        {
+                            <div class="card-deck mb-4" style="margin-right: 20px">
+                                <div style="background-color: rgb(244, 244, 236);" class="mb-3">
+                                    <img style="height: 100px; width: 280px;"
+                                         src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
+                                    <div style="text-align: center;" class="card-body">
+                                    <p> <a asp-page="/Courses/Detail" asp-route-id="@item.CourseId">@item.Name</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                </div>
+                <div>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                <li class="page-item @(pageIndex == i ? "active" : "")">
+                                    <a class="page-link" href="/Enroll?pageIndex=@i&searchname=@Model.searchValue&category=@Model.categoryID">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+
+                <h3>Course categories:</h3>
+                <div class="course-category row">
+                    <div class="col-4">
+                        @foreach (var item in @Model.courseCategories)
+                        {
+                            <ul>
+                                <a asp-page="/Enroll/Index"
+                                   asp-route-pageIndex="@pageIndex"
+                                   asp-route-searchname="@Model.searchValue"
+                                   asp-route-category="@item.CategoryId">@item.CategoryName</a>
+
+                            </ul>
+                        }
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
