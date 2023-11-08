@@ -60,7 +60,6 @@
                                                  src="https://cmshn.fpt.edu.vn/theme/image.php/trema/core/1697438386/spacer">
                                         </div>
                                         <div class="content">
-
                                             <ul class="section img-text">
                                                 <li class="activity forum modtype_forum " id="module-134734">
                                                     <div>
@@ -69,7 +68,7 @@
                                                             <div>
                                                                 <div class="activityinstance">
                                                                     <a class=""
-                                                                       onclick=""
+                                                                      
                                                                        href="https://cmshn.fpt.edu.vn/mod/forum/view.php?id=134734">
                                                                         <img src="https://cmshn.fpt.edu.vn/theme/image.php/trema/forum/1697438386/icon"
                                                                              class="iconlarge activityicon"
@@ -88,25 +87,32 @@
                                             </ul>
 
                                     </li>
-                                    <li id="section-1" class="section main section-summary clearfix"
-                                        role="region" aria-label="4 September - 10 September">
-                                        <div class="left side"></div>
-                                        <div class="right side"></div>
-                                        <div class="content">
-                                            <h3 class="section-title">
-                                                <a href="https://cmshn.fpt.edu.vn/course/view.php?id=4267&amp;section=1"
-                                                   class="">4 September - 10 September</a>
-                                            </h3>
-                                            <div class="section_availability"></div>
-                                            <div class="summarytext"></div>
-                                            <div class="section-summary-activities mdl-right">
-                                                <span class="activity-count">File: 1</span>
-                                            </div>
-                                            <div class="section-summary-activities mdl-right">
-                                                <span class="activity-count">Progress: 1 / 1</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    @if(Model.wl.Count>0){
+                                        @foreach (var item in @Model.wl)
+                                        {
+                                            <li id="section-1" class="section main section-summary clearfix"
+                                                >
+                                                <div class="left side"></div>
+                                                <div class="right side"></div>
+                                                <div class="content">
+                                                    <h3 class="section-title">
+                                                        <a href="https://cmshn.fpt.edu.vn/course/view.php?id=4267&amp;section=1"
+                                                           class="">@item.WeekTime()</a>
+                                                    </h3>
+                                                    <div class="section_availability"></div>
+                                                    <div class="summarytext"></div>
+                                                    <div class="section-summary-activities mdl-right">
+                                                        <span class="activity-count">File: 1</span>
+                                                    </div>
+                                                    <div class="section-summary-activities mdl-right">
+                                                        <span class="activity-count">Progress: 1 / 1</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                       
+                                    }
+                                    
 
                                 </ul>
                             </div>

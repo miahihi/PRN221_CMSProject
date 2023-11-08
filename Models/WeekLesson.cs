@@ -20,7 +20,27 @@ namespace Project.Models
 
         public string WeekTime()
         {
-            return EndDate.ToString() + " - " + StartDate.ToString(); 
+            string formattedEndDate;
+            if (EndDate != null)
+            {
+                formattedEndDate = EndDate.Value.ToString("dd/MMMM");
+            }
+            else
+            {
+                formattedEndDate = "";
+            }
+
+            string formattedStartDate;
+            if (StartDate != null)
+            {
+                formattedStartDate = StartDate.Value.ToString("dd/MMMM");
+            }
+            else
+            {
+                formattedStartDate = "";
+            }
+
+            return formattedEndDate + " - " + formattedStartDate;
         }
     }
 }
