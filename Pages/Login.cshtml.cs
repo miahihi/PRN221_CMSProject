@@ -12,6 +12,12 @@ namespace Project.Pages
 
         public IActionResult OnPostLoginUser(string email, string password)
         {
+            if(String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            {
+                ViewData["mess"] = "Login Fail!!!";
+                return Page();
+            }
+
             using (prn231_finalprojectContext context = new prn231_finalprojectContext())
             {
                 var loginuser = context.Users.FirstOrDefault(x => x.Email.ToLower() == email.ToLower() && x.Password.Equals(password));

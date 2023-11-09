@@ -73,10 +73,5 @@ namespace Project.Pages.Enroll
                 ViewData["totalPages"] = Math.Ceiling((double)courses.ToList().Count / pageSize);
             }
         }
-
-        public IActionResult OnPostSearchCourse(string searchname)
-        {
-            return RedirectToPage("SearchCourse", new { searchName = searchname });
-        }
     }
 }

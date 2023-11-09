@@ -90,17 +90,6 @@
                                                             </div>
                                                         </form>
                                                     </div>
-                                                    <div class="container-fluid">
-                                                        <div><h6 class="mt-2" style="text-align:center">Đăng nhập bằng tài khoản của bạn trên:</h6></div>
-                                                        <div class="potentialidplist">
-                                                            <div class="potentialidp">
-                                                                <a href="https://cmshn.fpt.edu.vn/auth/oauth2/login.php?id=5&amp;wantsurl=%2F&amp;sesskey=zeg1jte3yu" title="fpt.edu.vn" class="btn btn-secondary btn-block">
-                                                                    <img src="https://accounts.google.com/favicon.ico" alt="" width="24" height="24">
-                                                                    fpt.edu.vn
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,3 +108,11 @@
 
 </html>
 
+@if (ViewData["mess"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewData["mess"]");
+        };
+    </script>
+}

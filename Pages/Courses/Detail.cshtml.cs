@@ -33,7 +33,7 @@ namespace Project.Pages.Courses
                 Enrollment data = context.Enrollments.FirstOrDefault(c => c.CourseId == int.Parse(courseId) && c.UserId == int.Parse(loginID));
                 context.Enrollments.Remove(data);
                 context.SaveChanges();
-                return Page();
+                return RedirectToPage("/Courses/Index");
             }
         }
     }

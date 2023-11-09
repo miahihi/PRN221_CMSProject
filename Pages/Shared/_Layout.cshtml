@@ -43,15 +43,16 @@
     </script>
     <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex"
          id="yui_3_17_2_1_1696445272916_19">
-        <a href="https://cmshn.fpt.edu.vn" class="navbar-brand has-logo">
-            <span class="logo d-inline">
-                <img src="https://cmshn.fpt.edu.vn/pluginfile.php/1/core_admin/logocompact/0x70/1692173377/2020-FPTU-Eng.png"
-                     alt="eLearning">
-            </span>
-        </a>
+        
 
         @if (Model.userlogin != null)
         {
+            <a asp-page="/Courses/Index" class="navbar-brand has-logo">
+                <span class="logo d-inline">
+                    <img src="https://cmshn.fpt.edu.vn/pluginfile.php/1/core_admin/logocompact/0x70/1692173377/2020-FPTU-Eng.png"
+                         alt="eLearning">
+                </span>
+            </a>
             <ul class="nav navbar-nav ml-auto" id="yui_3_17_2_1_1696445272916_25">
                <span style="color: #eb346b">@Model.userlogin.Fullname</span>
             </ul>
@@ -65,8 +66,17 @@
                     <li><a asp-page="/Logout">Logout</a></li>
                 </ul>
             </div>
+        } else
+        {
+            <a asp-page="/Index" class="navbar-brand has-logo">
+                <span class="logo d-inline">
+                    <img src="https://cmshn.fpt.edu.vn/pluginfile.php/1/core_admin/logocompact/0x70/1692173377/2020-FPTU-Eng.png"
+                         alt="eLearning">
+                </span>
+            </a>
+            
         }
-        
+
     </nav>
     @RenderBody()
 </body>

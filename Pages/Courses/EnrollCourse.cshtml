@@ -6,7 +6,7 @@
     Layout = "/Pages/Shared/_Layout.cshtml";
 }
 <div id="page" class="container-fluid">
-    <h2>@Model.c.Name - @ViewData["CategoryName"]</h2>
+    <h2>@Model.c.Name - @Model.c.Code</h2>
 
     <div class="row card-deck mb-4" style="margin-top: 20px">
         <div style="background-color: rgb(244, 244, 236);" class="mb-4">
@@ -27,3 +27,12 @@
 
     </div>
 </div>
+
+@if (ViewData["mess"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewData["mess"]");
+        };
+    </script>
+}
