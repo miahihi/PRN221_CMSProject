@@ -52,7 +52,10 @@ namespace Project.Pages.Week
                         ViewData["mess"] = "Upload file successfully!";
                     }
                 }
-                ViewData["mess"] = "Upload file Fail!";
+                else
+                {
+                    ViewData["mess"] = "Upload file Fail!";
+                }
                 OnGet(int.Parse(assId));
                 //return RedirectToPage("/Week/Detail", new { id = assId });
 
