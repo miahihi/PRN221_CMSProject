@@ -155,10 +155,13 @@
                         {
                             <div class="box generalbox submissionaction py-3">
                                 <div class="singlebutton" style=" display: flex; justify-content: center; align-items: center">
-                                    <button type="submit" class="btn btn-secondary"
-                                            id="single_button654f2626d86ba19" title="">
-                                        Edit submission
-                                    </button>
+                                    <a asp-page="/Week/AddSubmission" asp-route-id="@Model.ass.Id">
+                                        <button type="submit" class="btn btn-secondary"
+                                                id="single_button654f2626d86ba19" title="">
+                                            Edit submission
+                                        </button>
+                                    </a>
+
                                 </div>
                             </div>
                         }

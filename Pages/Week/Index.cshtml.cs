@@ -62,5 +62,16 @@ namespace Project.Pages.Week
                 }
             }
         }
+        public IActionResult OnPostUnenroll(int courseId)
+        {
+            using (prn231_finalprojectContext context = new prn231_finalprojectContext())
+            {
+                string loginID = HttpContext.Request.Cookies["loginId"];
+                Enrollment data = context.Enrollments.FirstOrDefault(c => c.CourseId == courseId && c.UserId == int.Parse(loginID));
+                context.Enrollments.Remove(data);
+                context.SaveChanges();
+                return RedirectToPage("/Courses/Index");
+            }
+        }
     }
 }

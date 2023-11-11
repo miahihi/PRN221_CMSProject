@@ -78,8 +78,19 @@
                     <div class="modal-body">
                         <!-- Nội dung của hộp thoại thêm file -->
                         <div class="form-group">
-                            <label for="fileInput">Select file:</label>
-                            <input type="file" class="form-control-file" id="fileInput">
+                            @if (Model.ass.Attachment != null)
+                            {
+                                <label for="fileInput">Selected file:</label> <br />
+                                <a href="data:application/zip;base64,@System.Convert.ToBase64String(@Model.ass.Attachment)" download="file.zip">@Model.ass.AssignmentName Download</a>
+                                <br />
+                                <label for="fileInput">Choose file for edit:</label> <br />
+                                <input type="file" class="form-control-file" name="refile">
+                            }
+                            else
+                            {
+                                <label for="fileInput">Select file:</label>
+                                <input type="file" class="form-control-file" name="file">
+                            }
                             <input hidden name="assId" value="@Model.ass.Id"/>
                         </div>
                     </div>
