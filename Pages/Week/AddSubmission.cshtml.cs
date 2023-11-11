@@ -30,10 +30,15 @@ namespace Project.Pages.Week
                 }
             }
         }
-        public void uploadFile(IFormFile file, string assId)
+        public void OnPostUploadFile(IFormFile file, string assId)
         {
             using (prn231_finalprojectContext context = new prn231_finalprojectContext())
             {
+                //string loginID = HttpContext.Request.Cookies["loginId"];
+                //ass = context.Assignments.FirstOrDefault(x => x.Id == int.Parse(assId));
+                //wl = context.WeekLessons.FirstOrDefault(x => x.Id == ass.Wlid);
+                //c = context.Courses.FirstOrDefault(x => x.CourseId == wl.CourseId);
+                //sm = context.Submissions.FirstOrDefault(x => x.AssignId == int.Parse(assId) && x.UserId == int.Parse(loginID));
                 if (file != null && file.Length > 0 && assId!=null)
                 {
                     using (var memoryStream = new MemoryStream())
@@ -45,11 +50,14 @@ namespace Project.Pages.Week
                         curAssign.Attachment = memoryStream.ToArray();
                         context.SaveChanges();
                         ViewData["mess"] = "Upload file successfully!";
-                        
                     }
                 }
                 ViewData["mess"] = "Upload file Fail!";
-               
+                OnGet(int.Parse(assId));
+                //return RedirectToPage("/Week/Detail", new { id = assId });
+
+                //ViewData["mess"] = "Upload file Fail!";
+
             }
         }
     }

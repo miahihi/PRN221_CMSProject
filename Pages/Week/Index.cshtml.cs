@@ -13,6 +13,7 @@ namespace Project.Pages.Week
         public WeekLesson wl { get; set; }
         public void OnGet(int id)
         {
+            //id: weekid
             if (id != 0)
             {
                 using (prn231_finalprojectContext context = new prn231_finalprojectContext())
@@ -20,8 +21,8 @@ namespace Project.Pages.Week
                     string loginID = HttpContext.Request.Cookies["loginId"];
 
                     userlogin = context.Users.FirstOrDefault(x => x.UserId == int.Parse(loginID));
-                    c = context.Courses.FirstOrDefault(x => x.CourseId == id);
                     wl = context.WeekLessons.FirstOrDefault(x => x.Id == id);
+                    c = context.Courses.FirstOrDefault(x => x.CourseId == wl.CourseId);
                     ass = context.Assignments
                         .Where(x => x.Wlid == id).ToList();
 
