@@ -34,6 +34,28 @@
                         </div>
                     </div>
 
+                    <div class="d-flex flex-wrap">
+                        <div id="page-navbar">
+                            <nav role="navigation" aria-label="Breadcrumb trail">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="/Courses/Index">Courses</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/Courses/Detail?id=@Model.c.CourseId">@Model.c.Name</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/Week/Index?id=@Model.wl.Id">@Model.wl.WeekTime()</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="ml-auto d-flex">
+                        </div>
+                        <div id="course-header">
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -50,15 +72,31 @@
                                 <div class="single-section">
                                     @* chuyển trang week *@
                                     <div class="section-navigation navigationtitle">
+                                        @* @if() *@
                                         <span class="mdl-left">
-                                            <a href="https://cmshn.fpt.edu.vn/course/view.php?id=5136&amp;section=7">
-                                                <span class="larrow">◄</span>17 October - 23 October
-                                            </a>
-                                        </span><span class="mdl-right">
-                                            <a href="https://cmshn.fpt.edu.vn/course/view.php?id=5136&amp;section=9">
-                                                31
-                                                October - 6 November<span class="rarrow">►</span>
-                                            </a>
+                                            @if (Model.preWeek != null)
+                                            {
+                                                <a href="/Week/Index?id=@Model.preWeek.Id">
+                                                    @Model.preWeek.WeekTime()
+                                                    <span class="larrow">◄</span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                            }
+                                        </span>
+                                        <span class="mdl-right">
+                                            @if (Model.nextWeek != null)
+                                            {
+                                                <a href="/Week/Index?id=@Model.nextWeek.Id">
+                                                    @Model.nextWeek.WeekTime()
+                                                    <span class="rarrow">►</span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                            }
+                                            
                                         </span>
                                         <h3 class="sectionname"><span>@Model.wl.WeekTime()</span></h3>
                                     </div>

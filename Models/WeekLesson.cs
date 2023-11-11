@@ -18,7 +18,7 @@ namespace Project.Models
         public virtual Course? Course { get; set; }
         public virtual ICollection<Assignment> Assignments { get; set; }
 
-        public string WeekTime()
+        public string WeekTime(string time)
         {
             string formattedEndDate;
             if (EndDate != null)
@@ -42,5 +42,10 @@ namespace Project.Models
 
             return formattedEndDate + " - " + formattedStartDate;
         }
+        public string WeekTime()
+        {
+            return WeekTime("Now");
+        }
+        
     }
 }

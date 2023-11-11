@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project.Models;
+using System.Net.Mail;
 
 namespace Project.Pages
 {
@@ -14,7 +15,13 @@ namespace Project.Pages
         {
             if(String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
             {
-                ViewData["mess"] = "Login Fail!!!";
+                ViewData["mess"] = "You have to fill email and password!";
+                return Page();
+            }
+
+            if (!validate(email))
+            {
+                ViewData["mess"] = "Your email is wrong!";
                 return Page();
             }
 
@@ -28,6 +35,17 @@ namespace Project.Pages
                 }
                 ViewData["mess"] = "Login Fail!!!";
                 return Page();
+            }
+        }
+        private bool validate(string email)
+        {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(email);
+                return true;
+            } catch
+            {
+                return false;
             }
         }
     }
