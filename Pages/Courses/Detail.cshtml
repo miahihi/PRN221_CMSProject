@@ -26,7 +26,7 @@
                                     <div class="action-menu-trigger">
                                         <form asp-page-handler="Unenroll" method="post">
                                             <input name="courseId" value="@Model.c.CourseId" hidden>
-                                            <button type="submit" style="padding-top: 0; margin-top: 0;">Unenroll</button>
+                                            <button type="submit" style="padding-top: 0; margin-top: 0; background-color:burlywood; border:hidden">Unenroll</button>
                                         </form>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                                     </div>
                                                 </li>
                                             </ul>
-
+                                        </div>
                                     </li>
                                     @if(Model.wl.Count>0){
                                         @foreach (var item in @Model.wl)
@@ -96,17 +96,11 @@
                                                 <div class="right side"></div>
                                                 <div class="content">
                                                     <h3 class="section-title">
-                                                        <a href="https://cmshn.fpt.edu.vn/course/view.php?id=4267&amp;section=1"
+                                                        <a asp-page="/Week/Index" asp-route-id="@item.Id"
                                                            class="">@item.WeekTime()</a>
                                                     </h3>
                                                     <div class="section_availability"></div>
                                                     <div class="summarytext"></div>
-                                                    <div class="section-summary-activities mdl-right">
-                                                        <span class="activity-count">File: 1</span>
-                                                    </div>
-                                                    <div class="section-summary-activities mdl-right">
-                                                        <span class="activity-count">Progress: 1 / 1</span>
-                                                    </div>
                                                 </div>
                                             </li>
                                         }

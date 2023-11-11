@@ -1,0 +1,102 @@
+﻿@page
+@model Project.Pages.Week.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "WeekDetail";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div id="page" class="container-fluid">
+    <header style="margin: 20px;" id="page-header" class="row">
+        <div class="col-12 pt-3 pb-3">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="d-flex">
+                        <div class="mr-auto">
+                            <div class="page-context-header">
+                                <div class="page-header-headings">
+                                    <h1>@Model.c.Name</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="context-header-settings-menu">
+                            <div class="action-menu moodle-actionmenu d-inline" id="action-menu-2"
+                                 data-enhance="moodle-core-actionmenu">
+
+                                <div class="menubar d-flex " id="action-menu-2-menubar" role="menubar">
+                                    <div class="action-menu-trigger">
+                                        <form asp-page-handler="Unenroll" method="post">
+                                            <input name="courseId" value="@Model.c.CourseId" hidden>
+                                            <button type="submit" style="padding-top: 0; margin-top: 0; background-color:burlywood; border:hidden">Unenroll</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <div id="page-content" class="row">
+        <div id="region-main-box" class="col-12">
+            <section id="region-main">
+                <div class="card">
+                    <div class="card-body" style="background-color: #fff;">
+                        <div role="main">
+                            <span id="maincontent"></span>
+                            <div class="course-content">
+                                <div class="single-section">
+                                    @* chuyển trang week *@
+                                    <div class="section-navigation navigationtitle">
+                                        <span class="mdl-left">
+                                            <a href="https://cmshn.fpt.edu.vn/course/view.php?id=5136&amp;section=7">
+                                                <span class="larrow">◄</span>17 October - 23 October
+                                            </a>
+                                        </span><span class="mdl-right">
+                                            <a href="https://cmshn.fpt.edu.vn/course/view.php?id=5136&amp;section=9">
+                                                31
+                                                October - 6 November<span class="rarrow">►</span>
+                                            </a>
+                                        </span>
+                                        <h3 class="sectionname"><span>@Model.wl.WeekTime()</span></h3>
+                                    </div>
+                                    @* current week *@
+                                   @*  <ul class="weeks">
+                                        <li id="section-8" class="section main clearfix" role="region">
+                                            <h3 class="sectionname accesshide">@Model.wl.WeekTime()</h3>
+                                        </li>
+                                    </ul> *@
+                                    @if (Model.ass.Count >0)
+                                    {
+                                        @foreach(var item in Model.ass){
+                                            <ul class="section img-text">
+                                                <li class="activity quiz modtype_quiz " id="module-159012">
+                                                    <div>
+                                                        <div class="mod-indent-outer">
+                                                            <div class="mod-indent"></div>
+                                                            <div>
+                                                                <div class="activityinstance" style="display: flex; align-items: center;">
+                                                                    <input type="checkbox" name="IsChecked" checked="" style="margin-right: 10px;" />
+                                                                    <a class="iconlarge activityicon" role="presentation" aria-hidden="true" asp-page="/Week/Detail" asp-route-id="@item.Id">
+                                                                        <span class="instancename">
+                                                                            @item.AssignmentName
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

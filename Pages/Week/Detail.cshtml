@@ -1,0 +1,170 @@
+﻿@page
+@model Project.Pages.Week.DetailModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "WeekDetail";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div id="page" class="container-fluid">
+    <header style="margin: 20px;" id="page-header" class="row">
+        <div class="col-12 pt-3 pb-3">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="d-flex">
+                        <div class="mr-auto">
+                            <div class="page-context-header">
+                                <div class="page-header-headings">
+                                    <h1>@Model.c.Name</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="context-header-settings-menu">
+                            <div class="action-menu moodle-actionmenu d-inline" id="action-menu-2"
+                                 data-enhance="moodle-core-actionmenu">
+
+                                <div class="menubar d-flex " id="action-menu-2-menubar" role="menubar">
+                                    <div class="action-menu-trigger">
+                                        <form asp-page-handler="Unenroll" method="post">
+                                            <input name="courseId" value="@Model.c.CourseId" hidden>
+                                            <button type="submit" style="padding-top: 0; margin-top: 0; background-color:burlywood; border:hidden">Unenroll</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <section id="region-main">
+        <div class="card">
+            <div class="card-body">
+                <span class="notifications" id="user-notifications"></span>
+                <div role="main">
+                    <span id="maincontent"></span>
+                    <h2>@Model.ass.AssignmentName</h2>
+                    <div id="intro" class="box generalbox boxaligncenter py-3"></div>
+                    <div class="submissionstatustable">
+                        <h3>Submission status</h3>
+                        <div class="box boxaligncenter submissionsummarytable py-3">
+                            <table class="generaltable">
+                                @if (@Model.sm == null)
+                                {
+                                    <tbody>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Submission status</td>
+                                            <td class="cell c1 lastcol" style="">No attempt</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Grading status</td>
+                                            <td class="submissionnotgraded cell c1 lastcol" style="">Not graded</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Due date</td>
+                                            <td class="cell c1 lastcol" style="">
+                                                Saturday, 18 November 2023, 12:00 AM
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Time remaining</td>
+                                            <td id="countdown" class="overdue cell c1 lastcol" style="">
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Last modified</td>
+                                            <td class="cell c1 lastcol" style="">-</td>
+                                        </tr>
+                                    </tbody>
+                                }
+                                else
+                                {
+                                    <tbody>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Submission status</td>
+                                            <td class="cell c1 lastcol" style="background-color: #CFEFCF">
+                                                Submitted for grading
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Grading status</td>
+                                            <td class="submissionnotgraded cell c1 lastcol" style="">Not graded</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Due date</td>
+                                            <td class="cell c1 lastcol" style="">
+                                                @Model.sm.DueDate
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Time remaining</td>
+                                            <td class="overdue cell c1 lastcol" style="background-color: #CFEFCF">
+                                                Assignment was submitted
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="cell c0" style="">Last modified</td>
+                                            <td class="cell c1 lastcol" style="">@Model.sm.LastModifiedTime</td>
+                                        </tr>
+                                    </tbody>
+                                }
+
+                            </table>
+                        </div>
+                        @if (Model.sm == null)
+                        {
+                            <div class="box generalbox submissionaction py-3">
+                                <div class="singlebutton" style=" display: flex; justify-content: center; align-items: center">
+                                    <a asp-page="/Week/AddSubmission" asp-route-id="@Model.ass.Id">
+                                        <button type="submit" class="btn btn-secondary"
+                                                id="single_button654f2626d86ba19" title="">
+                                            Add submission
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="box generalbox submissionaction py-3">
+                                <div class="singlebutton" style=" display: flex; justify-content: center; align-items: center">
+                                    <button type="submit" class="btn btn-secondary"
+                                            id="single_button654f2626d86ba19" title="">
+                                        Edit submission
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    // Thời gian kết thúc (định dạng Unix timestamp)
+    var endDate = new Date("2023-11-18").getTime();
+
+    // Hàm tính toán và cập nhật thời gian còn lại
+    function updateCountdown() {
+        var now = new Date().getTime();
+        var timeRemaining = endDate - now;
+
+        // Tính toán số ngày, giờ, phút và giây từ thời gian còn lại
+        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        // Hiển thị thời gian còn lại trong thẻ span
+        document.getElementById("countdown").innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ";
+
+        // Cập nhật lại sau mỗi 1 giây
+        setTimeout(updateCountdown, 1000);
+    }
+
+    // Gọi hàm để bắt đầu tính toán thời gian còn lại
+    updateCountdown();
+</script>

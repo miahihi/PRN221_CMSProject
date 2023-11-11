@@ -1,0 +1,76 @@
+﻿@page
+@model Project.Pages.Week.AddSubmissionModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "WeekDetail";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div id="page" class="container-fluid">
+    <header style="margin: 20px;" id="page-header" class="row">
+        <div class="col-12 pt-3 pb-3">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="d-flex">
+                        <div class="mr-auto">
+                            <div class="page-context-header">
+                                <div class="page-header-headings">
+                                    <h1>@Model.c.Name</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="context-header-settings-menu">
+                            <div class="action-menu moodle-actionmenu d-inline" id="action-menu-2"
+                                 data-enhance="moodle-core-actionmenu">
+
+                                <div class="menubar d-flex " id="action-menu-2-menubar" role="menubar">
+                                    <div class="action-menu-trigger">
+                                        <form asp-page-handler="Unenroll" method="post">
+                                            <input name="courseId" value="@Model.c.CourseId" hidden>
+                                            <button type="submit" style="padding-top: 0; margin-top: 0; background-color:burlywood; border:hidden">Unenroll</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="font-weight: bold" class="modal-title">Add File Submission</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-page-handler="uploadFile" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <!-- Nội dung của hộp thoại thêm file -->
+                        <div class="form-group">
+                            <label for="fileInput">Select file:</label>
+                            <input type="file" class="form-control-file" id="fileInput">
+                            <input hidden name="assId" value="@Model.ass.Id"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-page="/Week/Detail" asp-route-id="@Model.ass.Id"><button type="button" class="btn btn-secondary">BACK</button></a>
+                        <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewData["mess"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewData["mess"]");
+        };
+    </script>
+}

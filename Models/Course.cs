@@ -19,5 +19,19 @@ namespace Project.Models
         public virtual CourseCategory? Category { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
         public virtual ICollection<WeekLesson> WeekLessons { get; set; }
+
+        public bool isAlreadyEnroll(int UserID)
+        {
+            using (prn231_finalprojectContext context = new prn231_finalprojectContext())
+            {
+                Enrollment? enrollment = context.Enrollments.FirstOrDefault(p => p.UserId == UserID && p.CourseId == CourseId);
+                if (enrollment == null)
+                {
+                    //not enroll
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

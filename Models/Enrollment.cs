@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Project.Models
+﻿namespace Project.Models
 {
     public partial class Enrollment
     {
@@ -11,5 +8,7 @@ namespace Project.Models
 
         public virtual Course Course { get; set; } = null!;
         public virtual User User { get; set; } = null!;
+
+        
     }
 }
